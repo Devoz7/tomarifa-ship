@@ -1,0 +1,32 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Planète Terre stylisée -->
+  <circle cx="64" cy="64" r="56" fill="url(#gradient)" stroke="url(#borderGradient)" strokeWidth="4"/>
+  
+  <!-- Continents stylisés -->
+  <path d="M32 48c8-4 16-4 24 0s12 8 20 4c4-4 8-12 16-8" stroke="#10B981" strokeWidth="6" fill="none" strokeLinecap="round"/>
+  <path d="M24 80c12-4 20 0 28-4s16-8 24-4c4 4 8 8 16 4" stroke="#10B981" strokeWidth="6" fill="none" strokeLinecap="round"/>
+  <path d="M40 32c8 4 12 0 20 4s12 4 16 0" stroke="#10B981" strokeWidth="5" fill="none" strokeLinecap="round"/>
+  
+  <!-- Points d'émission CO2 -->
+  <circle cx="48" cy="40" r="6" fill="#EF4444" opacity="0.8"/>
+  <circle cx="80" cy="56" r="4" fill="#F59E0B" opacity="0.8"/>
+  <circle cx="56" cy="88" r="5" fill="#EF4444" opacity="0.7"/>
+  <circle cx="96" cy="80" r="3" fill="#F59E0B" opacity="0.9"/>
+  
+  <!-- Effet d'atmosphère -->
+  <circle cx="64" cy="64" r="56" fill="none" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="8"/>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#3B82F6"/>
+      <stop offset="30%" stopColor="#1E40AF"/>
+      <stop offset="70%" stopColor="#059669"/>
+      <stop offset="100%" stopColor="#0D9488"/>
+    </linearGradient>
+    <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#10B981"/>
+      <stop offset="100%" stopColor="#3B82F6"/>
+    </linearGradient>
+  </defs>
+</svg>
