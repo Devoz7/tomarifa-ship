@@ -14,7 +14,8 @@ progress::-webkit-progress-value {
 
 /* Custom animations for Hero particles */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
   }
   50% {
@@ -23,7 +24,8 @@ progress::-webkit-progress-value {
 }
 
 @keyframes bounce-slow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -60,7 +62,7 @@ progress::-webkit-progress-value {
 .btn-gradient {
   background: linear-gradient(90deg, #4f46e5, #06b6d4, #f59e42);
   background-size: 300% 300%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   transition: box-shadow 100ms, filter 100ms, background 100ms;
   border: 0 !important;
   border-color: transparent !important;

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export const useParallax = (speed = 0.5) => {
   const [offset, setOffset] = useState(0);
@@ -9,10 +9,10 @@ export const useParallax = (speed = 0.5) => {
       setOffset(window.pageYOffset * speed);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    
+    window.addEventListener("scroll", handleScroll);
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [speed]);
 

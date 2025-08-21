@@ -8,16 +8,16 @@ import config from "@/config";
 
 const links = [
   {
-    href: "/#pricing",
-    label: "Pricing",
+    href: "/#comparaison",
+    label: "Comparaison",
   },
   {
-    href: "/#testimonials",
-    label: "Reviews",
+    href: "/#cryptos",
+    label: "Cryptos",
   },
   {
-    href: "/#faq",
-    label: "FAQ",
+    href: "/#support",
+    label: "Support",
   },
 ];
 
@@ -31,213 +31,140 @@ const Header = () => {
   }, [searchParams]);
 
   return (
-    <header className="bg-gradient-to-r from-green-50 via-blue-50 to-teal-50 border-b border-green-100/50 backdrop-blur-sm relative overflow-hidden">
-      {/* Éléments décoratifs du header */}
-      <div className="absolute top-2 left-10 w-6 h-6 bg-green-200 rounded-full mix-blend-multiply filter blur-sm opacity-60 animate-float"></div>
-      <div className="absolute top-1 right-20 w-4 h-4 bg-blue-200 rounded-full mix-blend-multiply filter blur-sm opacity-60 animate-pulse"></div>
-      <div className="absolute bottom-1 left-1/2 w-5 h-5 bg-teal-200 rounded-full mix-blend-multiply filter blur-sm opacity-60 animate-float"></div>
-      
-      <nav
-        className="container flex items-center justify-between px-8 py-4 mx-auto relative z-10"
-        aria-label="Global"
-      >
-        {/* Your logo/name on large screens */}
-        <div className="flex lg:flex-1">
+        <header className="absolute top-0 w-full z-50 bg-transparent">
+      <nav className="flex items-center justify-between px-24 py-4 mx-auto max-w-7xl">
+        {/* Logo à gauche */}
+        <div className="flex-1">
           <Link
-            className="flex items-center gap-3 shrink-0 group"
+            className="flex items-center gap-2 shrink-0"
             href="/"
-            title={`${config.appName} hompage`}
+            title={`${config.appName} - Comparateur de vols crypto`}
           >
-            <div className="relative">
-              <svg 
-                width="32" 
-                height="32" 
-                viewBox="0 0 32 32" 
-                fill="none" 
+            <div className="w-8 h-8 bg-gradient-to-br from-violet-600 to-violet-400 rounded-lg flex items-center justify-center shadow-lg">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="transform group-hover:scale-110 transition-transform duration-200"
+                className="text-white transform rotate-12"
               >
-                <circle cx="16" cy="16" r="14" fill="url(#gradient)" stroke="url(#borderGradient)" strokeWidth="1"/>
-                <path d="M8 12c2-1 4-1 6 0s3 2 5 1c1-1 2-3 4-2" stroke="#10B981" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                <path d="M6 20c3-1 5 0 7-1s4-2 6-1c1 1 2 2 4 1" stroke="#10B981" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                <path d="M10 8c2 1 3 0 5 1s3 1 4 0" stroke="#10B981" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-                <circle cx="12" cy="10" r="1.5" fill="#EF4444" opacity="0.8"/>
-                <circle cx="20" cy="14" r="1" fill="#F59E0B" opacity="0.8"/>
-                <circle cx="14" cy="22" r="1.2" fill="#EF4444" opacity="0.7"/>
-                <circle cx="24" cy="20" r="0.8" fill="#F59E0B" opacity="0.9"/>
-                <circle cx="16" cy="16" r="14" fill="none" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="2"/>
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#3B82F6"/>
-                    <stop offset="30%" stopColor="#1E40AF"/>
-                    <stop offset="70%" stopColor="#059669"/>
-                    <stop offset="100%" stopColor="#0D9488"/>
-                  </linearGradient>
-                  <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#10B981"/>
-                    <stop offset="100%" stopColor="#3B82F6"/>
-                  </linearGradient>
-                </defs>
+                <path
+                  d="M3 12L22 2L13 21L11 13L3 12Z"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M11 13L22 2"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
               </svg>
-              <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-full animate-pulse"></div>
             </div>
-            <span className="font-extrabold text-xl bg-gradient-to-r from-green-600 via-blue-600 to-teal-600 bg-clip-text text-transparent">
-              {config.appName}
+            <span className="font-bold text-lg text-white drop-shadow-lg">
+              CryptoFly
             </span>
           </Link>
         </div>
-        {/* Burger button to open menu on mobile */}
-        <div className="flex lg:hidden">
+
+        {/* Menu hamburger à droite */}
+        <div className="flex items-center gap-6">
+          {/* Gift cards et My trips */}
+          <div className="hidden md:flex items-center gap-6">
+            <Link
+              href="/gift-cards"
+              className="text-white/90 hover:text-white transition-colors font-medium text-sm"
+            >
+              Gift cards
+            </Link>
+            <Link
+              href="/my-trips"
+              className="text-white/90 hover:text-white transition-colors font-medium text-sm"
+            >
+              My trips
+            </Link>
+          </div>
+          
+          {/* Menu hamburger */}
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
+            className="p-2 text-white hover:bg-white/10 rounded-md transition-colors"
             onClick={() => setIsOpen(true)}
           >
-            <span className="sr-only">Open main menu</span>
+            <span className="sr-only">Ouvrir le menu</span>
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
+              width="24"
+              height="24"
               viewBox="0 0 24 24"
-              strokeWidth={1.5}
+              fill="none"
               stroke="currentColor"
-              className="w-6 h-6 text-base-content"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
             </svg>
           </button>
         </div>
 
-        {/* Your links on large screens */}
-        <div className="hidden lg:flex lg:justify-center lg:gap-12 lg:items-center">
-          {links.map((link) => (
-            <Link
-              href={link.href}
-              key={link.href}
-              className="text-gray-700 hover:text-green-600 font-medium transition-colors duration-200 relative group"
-              title={link.label}
+        {/* Menu modal overlay comme Ulysse */}
+        {isOpen && (
+          <div className="fixed inset-0 z-50 bg-black/50" onClick={() => setIsOpen(false)}>
+            <div 
+              className="fixed top-0 right-0 h-full w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out"
+              onClick={(e) => e.stopPropagation()}
             >
-              {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-600 to-teal-600 group-hover:w-full transition-all duration-300"></span>
-            </Link>
-          ))}
-        </div>
-
-        {/* CTA on large screens */}
-        <div className="hidden lg:flex lg:justify-end lg:flex-1">
-          <div className="bg-gradient-to-r from-green-600 to-teal-600 p-[1px] rounded-lg">
-            <div className="bg-white rounded-lg">
-              <ButtonSignin extraStyle="btn-primary bg-gradient-to-r from-green-600 to-teal-600 border-none text-white hover:from-green-700 hover:to-teal-700" />
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile menu, show/hide based on menu state. */}
-      <div className={`relative z-50 ${isOpen ? "" : "hidden"}`}>
-        <div
-          className={`fixed inset-y-0 right-0 z-10 w-full px-8 py-4 overflow-y-auto bg-gradient-to-br from-green-50 via-blue-50 to-teal-50 backdrop-blur-md sm:max-w-sm sm:ring-1 sm:ring-green-200/50 transform origin-right transition ease-in-out duration-300`}
-        >
-          {/* Your logo/name on small screens */}
-          <div className="flex items-center justify-between">
-            <Link
-              className="flex items-center gap-3 shrink-0 group"
-              title={`${config.appName} hompage`}
-              href="/"
-            >
-              <div className="relative">
-                <svg 
-                  width="32" 
-                  height="32" 
-                  viewBox="0 0 32 32" 
-                  fill="none" 
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="transform group-hover:scale-110 transition-transform duration-200"
+              {/* Header du menu */}
+              <div className="flex items-center justify-between p-6 border-b">
+                <h2 className="text-lg font-semibold text-gray-800">Menu</h2>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                 >
-                  <circle cx="16" cy="16" r="14" fill="url(#gradient-mobile)" stroke="url(#borderGradient-mobile)" strokeWidth="1"/>
-                  <path d="M8 12c2-1 4-1 6 0s3 2 5 1c1-1 2-3 4-2" stroke="#10B981" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                  <path d="M6 20c3-1 5 0 7-1s4-2 6-1c1 1 2 2 4 1" stroke="#10B981" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                  <path d="M10 8c2 1 3 0 5 1s3 1 4 0" stroke="#10B981" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-                  <circle cx="12" cy="10" r="1.5" fill="#EF4444" opacity="0.8"/>
-                  <circle cx="20" cy="14" r="1" fill="#F59E0B" opacity="0.8"/>
-                  <circle cx="14" cy="22" r="1.2" fill="#EF4444" opacity="0.7"/>
-                  <circle cx="24" cy="20" r="0.8" fill="#F59E0B" opacity="0.9"/>
-                  <circle cx="16" cy="16" r="14" fill="none" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="2"/>
-                  <defs>
-                    <linearGradient id="gradient-mobile" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#3B82F6"/>
-                      <stop offset="30%" stopColor="#1E40AF"/>
-                      <stop offset="70%" stopColor="#059669"/>
-                      <stop offset="100%" stopColor="#0D9488"/>
-                    </linearGradient>
-                    <linearGradient id="borderGradient-mobile" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#10B981"/>
-                      <stop offset="100%" stopColor="#3B82F6"/>
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-              <span className="font-extrabold text-xl bg-gradient-to-r from-green-600 via-blue-600 to-teal-600 bg-clip-text text-transparent">
-                {config.appName}
-              </span>
-            </Link>
-            <button
-              type="button"
-              className="-m-2.5 rounded-md p-2.5"
-              onClick={() => setIsOpen(false)}
-            >
-              <span className="sr-only">Close menu</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-
-          {/* Your links on small screens */}
-          <div className="flow-root mt-6">
-            <div className="py-4">
-              <div className="flex flex-col gap-y-4 items-start">
-                {links.map((link) => (
-                  <Link
-                    href={link.href}
-                    key={link.href}
-                    className="text-gray-700 hover:text-green-600 font-medium transition-colors duration-200 relative group text-lg"
-                    title={link.label}
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    {link.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-600 to-teal-600 group-hover:w-full transition-all duration-300"></span>
-                  </Link>
-                ))}
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
               </div>
-            </div>
-            <div className="divider bg-gradient-to-r from-green-200 to-teal-200 h-px"></div>
-            {/* Your CTA on small screens */}
-            <div className="flex flex-col">
-              <div className="bg-gradient-to-r from-green-600 to-teal-600 p-[1px] rounded-lg w-full">
-                <div className="bg-white rounded-lg">
-                  <ButtonSignin extraStyle="btn-primary bg-gradient-to-r from-green-600 to-teal-600 border-none text-white hover:from-green-700 hover:to-teal-700 w-full" />
+
+              {/* Contenu du menu */}
+              <div className="p-6">
+                <div className="space-y-4">
+                  {links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="block py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-violet-600 rounded-lg transition-colors font-medium"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+                
+                <div className="mt-8 pt-6 border-t">
+                  <ButtonSignin extraStyle="w-full bg-violet-600 hover:bg-violet-700 text-white border-0 rounded-lg" />
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        )}
+      </nav>
     </header>
   );
-};
-
-export default Header;
+};export default Header;
