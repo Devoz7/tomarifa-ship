@@ -42,6 +42,18 @@ progress::-webkit-progress-value {
   }
 }
 
+/* Animation for cookie banner */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -51,34 +63,9 @@ progress::-webkit-progress-value {
 }
 
 .animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
+  animation: spin-slow 8s linear infinite;
 }
 
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
-}
-
-/* Button gradient styles */
-.btn-gradient {
-  background: linear-gradient(90deg, #4f46e5, #06b6d4, #f59e42);
-  background-size: 300% 300%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  transition: box-shadow 100ms, filter 100ms, background 100ms;
-  border: 0 !important;
-  border-color: transparent !important;
-  color: #fff !important;
-  filter: saturate(1);
-}
-
-.btn-gradient:hover {
-  filter: saturate(1.2);
-}
-
-.btn-gradient:disabled {
-  background: none !important;
-  background-color: rgba(107, 114, 128, 0.3) !important;
-}
-
-.btn {
-  text-transform: capitalize !important;
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out;
 }

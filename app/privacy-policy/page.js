@@ -2,29 +2,6 @@ import Link from "next/link";
 import { getSEOTags } from "@/libs/seo";
 import config from "@/config";
 
-// CHATGPT PROMPT TO GENERATE YOUR PRIVACY POLICY — replace with your own data 👇
-
-// 1. Go to https://chat.openai.com/
-// 2. Copy paste bellow
-// 3. Replace the data with your own (if needed)
-// 4. Paste the answer from ChatGPT directly in the <pre> tag below
-
-// You are an excellent lawyer.
-
-// I need your help to write a simple privacy policy for my website. Here is some context:
-// - Website: https://shipfa.st
-// - Name: ShipFast
-// - Description: A JavaScript code boilerplate to help entrepreneurs launch their startups faster
-// - User data collected: name, email and payment information
-// - Non-personal data collection: web cookies
-// - Purpose of Data Collection: Order processing
-// - Data sharing: we do not share the data with any other parties
-// - Children's Privacy: we do not collect any data from children
-// - Updates to the Privacy Policy: users will be updated by email
-// - Contact information: marc@shipfa.st
-
-// Please write a simple privacy policy for my site. Add the current date.  Do not add or explain your reasoning. Answer:
-
 export const metadata = getSEOTags({
   title: `Privacy Policy | ${config.appName}`,
   canonicalUrlRelative: "/privacy-policy",
@@ -32,9 +9,9 @@ export const metadata = getSEOTags({
 
 const PrivacyPolicy = () => {
   return (
-    <main className="max-w-xl mx-auto">
-      <div className="p-5">
-        <Link href="/" className="btn btn-ghost">
+    <main className="max-w-4xl mx-auto">
+      <div className="p-8">
+        <Link href="/" className="btn btn-ghost mb-6">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -49,60 +26,233 @@ const PrivacyPolicy = () => {
           </svg>{" "}
           Back
         </Link>
-        <h1 className="text-3xl font-extrabold pb-6">
-          Privacy Policy for {config.appName}
+
+        <h1 className="text-4xl font-bold text-gray-800 mb-8">
+          Privacy Policy for CryptoFly
         </h1>
 
-        <pre
-          className="leading-relaxed whitespace-pre-wrap"
-          style={{ fontFamily: "sans-serif" }}
-        >
-          {`Last Updated: 2023-08-25
+        <div className="prose prose-lg max-w-none">
+          <p className="text-gray-600 mb-6">
+            <strong>Last Updated:</strong> August 24, 2025
+          </p>
 
-Thank you for visiting ShipFast ("we," "us," or "our"). This Privacy Policy outlines how we collect, use, and protect your personal and non-personal information when you use our website located at https://shipfa.st (the "Website").
+          <div className="space-y-8">
+            <section>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                1. Introduction
+              </h2>
+              <p className="text-gray-700 leading-relaxed">
+                Welcome to CryptoFly ("we," "us," or "our"). This Privacy Policy
+                explains how we collect, use, protect, and handle your personal
+                information when you use our cryptocurrency flight booking
+                platform. By using our services, you agree to the collection and
+                use of information in accordance with this policy.
+              </p>
+            </section>
 
-By accessing or using the Website, you agree to the terms of this Privacy Policy. If you do not agree with the practices described in this policy, please do not use the Website.
+            <section>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                2. Information We Collect
+              </h2>
 
-1. Information We Collect
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                2.1 Personal Information
+              </h3>
+              <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                <li>
+                  <strong>Contact Information:</strong> Name, email address,
+                  phone number
+                </li>
+                <li>
+                  <strong>Travel Information:</strong> Passport details, travel
+                  preferences, booking history
+                </li>
+                <li>
+                  <strong>Payment Information:</strong> Cryptocurrency wallet
+                  addresses, transaction IDs (we do not store private keys)
+                </li>
+                <li>
+                  <strong>Identity Verification:</strong> Government-issued ID
+                  for compliance with travel regulations
+                </li>
+              </ul>
 
-1.1 Personal Data
+              <h3 className="text-xl font-semibold text-gray-800 mb-3 mt-6">
+                2.2 Non-Personal Information
+              </h3>
+              <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                <li>Browser type and device information</li>
+                <li>IP address and location data</li>
+                <li>Website usage patterns and analytics</li>
+                <li>Cookies and similar tracking technologies</li>
+              </ul>
+            </section>
 
-We collect the following personal information from you:
+            <section>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                3. How We Use Your Information
+              </h2>
+              <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                <li>Process flight bookings and cryptocurrency payments</li>
+                <li>
+                  Verify your identity for security and compliance purposes
+                </li>
+                <li>Communicate booking confirmations and travel updates</li>
+                <li>Provide customer support and resolve issues</li>
+                <li>Improve our services and user experience</li>
+                <li>Comply with legal and regulatory requirements</li>
+                <li>
+                  Send promotional offers and travel deals (with your consent)
+                </li>
+              </ul>
+            </section>
 
-Name: We collect your name to personalize your experience and communicate with you effectively.
-Email: We collect your email address to send you important information regarding your orders, updates, and communication.
-Payment Information: We collect payment details to process your orders securely. However, we do not store your payment information on our servers. Payments are processed by trusted third-party payment processors.
+            <section>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                4. Cryptocurrency and Blockchain
+              </h2>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                <strong>Important:</strong> Cryptocurrency transactions are
+                recorded on public blockchains and are generally irreversible
+                and publicly visible. While we take measures to protect your
+                privacy:
+              </p>
+              <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                <li>We never store your private keys or seed phrases</li>
+                <li>
+                  Transaction details may be visible on public blockchain
+                  explorers
+                </li>
+                <li>
+                  We use secure wallet integration services for payment
+                  processing
+                </li>
+                <li>
+                  All crypto transactions are subject to blockchain network
+                  confirmations
+                </li>
+              </ul>
+            </section>
 
-1.2 Non-Personal Data
+            <section>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                5. Data Sharing and Third Parties
+              </h2>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                We may share your information with:
+              </p>
+              <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                <li>
+                  <strong>Airlines and Travel Partners:</strong> To process your
+                  bookings
+                </li>
+                <li>
+                  <strong>Payment Processors:</strong> For cryptocurrency
+                  transaction processing
+                </li>
+                <li>
+                  <strong>Government Authorities:</strong> When required by law
+                  or for security purposes
+                </li>
+                <li>
+                  <strong>Service Providers:</strong> Who help us operate our
+                  platform (under strict confidentiality)
+                </li>
+              </ul>
+              <p className="text-gray-700 leading-relaxed mt-4">
+                <strong>
+                  We never sell your personal data to third parties.
+                </strong>
+              </p>
+            </section>
 
-We may use web cookies and similar technologies to collect non-personal information such as your IP address, browser type, device information, and browsing patterns. This information helps us to enhance your browsing experience, analyze trends, and improve our services.
+            <section>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                6. Data Security
+              </h2>
+              <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                <li>End-to-end encryption for sensitive data transmission</li>
+                <li>Secure storage with industry-standard encryption</li>
+                <li>Regular security audits and vulnerability assessments</li>
+                <li>Multi-factor authentication for account access</li>
+                <li>Compliance with international data protection standards</li>
+              </ul>
+            </section>
 
-2. Purpose of Data Collection
+            <section>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                7. Cookies and Tracking
+              </h2>
+              <p className="text-gray-700 leading-relaxed">
+                We use cookies to enhance your experience, analyze site usage,
+                and provide personalized content. You can manage your cookie
+                preferences through our Cookie Settings in the footer of our
+                website.
+              </p>
+            </section>
 
-We collect and use your personal data for the sole purpose of order processing. This includes processing your orders, sending order confirmations, providing customer support, and keeping you updated about the status of your orders.
+            <section>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                8. Your Rights
+              </h2>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Depending on your location, you may have the following rights:
+              </p>
+              <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                <li>Access and review your personal data</li>
+                <li>Correct or update inaccurate information</li>
+                <li>
+                  Request deletion of your data (subject to legal requirements)
+                </li>
+                <li>Opt-out of marketing communications</li>
+                <li>Data portability and withdrawal of consent</li>
+              </ul>
+            </section>
 
-3. Data Sharing
+            <section>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                9. International Transfers
+              </h2>
+              <p className="text-gray-700 leading-relaxed">
+                As a global platform, your data may be transferred to and
+                processed in countries other than your own. We ensure
+                appropriate safeguards are in place to protect your data during
+                international transfers.
+              </p>
+            </section>
 
-We do not share your personal data with any third parties except as required for order processing (e.g., sharing your information with payment processors). We do not sell, trade, or rent your personal information to others.
+            <section>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                10. Changes to This Policy
+              </h2>
+              <p className="text-gray-700 leading-relaxed">
+                We may update this Privacy Policy periodically. We will notify
+                you of any material changes via email or through a prominent
+                notice on our website.
+              </p>
+            </section>
 
-4. Children's Privacy
-
-ShipFast is not intended for children under the age of 13. We do not knowingly collect personal information from children. If you are a parent or guardian and believe that your child has provided us with personal information, please contact us at the email address provided below.
-
-5. Updates to the Privacy Policy
-
-We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. Any updates will be posted on this page, and we may notify you via email about significant changes.
-
-6. Contact Information
-
-If you have any questions, concerns, or requests related to this Privacy Policy, you can contact us at:
-
-Email: marc@shipfa.st
-
-For all other inquiries, please visit our Contact Us page on the Website.
-
-By using ShipFast, you consent to the terms of this Privacy Policy.`}
-        </pre>
+            <section>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                11. Contact Us
+              </h2>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <p className="text-gray-700 mb-2">
+                  If you have questions about this Privacy Policy or our data
+                  practices, please contact us:
+                </p>
+                <ul className="text-gray-700 space-y-1">
+                  <li>
+                    <strong>Email:</strong> privacy@cryptofly.com
+                  </li>
+                  <li>
+                    <strong>Address:</strong> CryptoFly Privacy Team
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </div>
       </div>
     </main>
   );
