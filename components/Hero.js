@@ -1,13 +1,44 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function Hero() {
   const [tripType, setTripType] = useState('round-trip');
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      // La vidéo se joue une fois puis revient au début et s'arrête
+      const handleVideoEnd = () => {
+        video.currentTime = 0; // Revenir au début de la vidéo
+        video.pause();
+      };
+      
+      video.addEventListener('ended', handleVideoEnd);
+      
+      return () => {
+        video.removeEventListener('ended', handleVideoEnd);
+      };
+    }
+  }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Video Background */}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/images/video-background.mp4" type="video/mp4" />
+      </video>
+      
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
+      
+      <div className="container mx-auto px-6 relative z-20">
         <div className="max-w-4xl mx-auto">
           <div className="text-left mb-8">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-2">
