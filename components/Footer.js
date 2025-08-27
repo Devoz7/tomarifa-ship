@@ -2,8 +2,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/hooks/useTranslation";
 
 const Footer = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   const [showCookieBanner, setShowCookieBanner] = useState(false);
 
   const handleCookieClick = () => {
@@ -27,13 +32,10 @@ const Footer = () => {
           {/* Main section */}
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              Welcome aboard! 🚀
+              {t.welcomeAboard}
             </h2>
             <p className="text-lg text-gray-600 max-w-4xl leading-relaxed">
-              Because traveling is great, but traveling with peace of mind is
-              even better! We offer you the best flight options on a newly
-              designed website, with high-quality customer service and crypto
-              payments!
+              {t.footerDescription}
             </p>
           </div>
 
@@ -41,44 +43,44 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Our offers */}
             <div>
-              <h3 className="font-bold text-gray-800 mb-4">Our offers</h3>
+              <h3 className="font-bold text-gray-800 mb-4">{t.ourOffers}</h3>
               <div className="space-y-2">
                 <Link
                   href="#"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  Crypto payment
+                  {t.cryptoPayment}
                 </Link>
                 <Link
                   href="#"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  Bitcoin gift card
+                  {t.bitcoinGiftCard}
                 </Link>
                 <Link
                   href="#"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  Vacation vouchers
+                  {t.vacationVouchers}
                 </Link>
                 <Link
                   href="#"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  Rent a car
+                  {t.rentCar}
                 </Link>
                 <Link
                   href="#"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  Join the crypto club
+                  {t.joinCryptoClub}
                 </Link>
               </div>
             </div>
 
             {/* Learn more */}
             <div>
-              <h3 className="font-bold text-gray-800 mb-4">Learn more</h3>
+              <h3 className="font-bold text-gray-800 mb-4">{t.learnMore}</h3>
               <div className="space-y-2">
                 <Link
                   href="#"
@@ -90,56 +92,56 @@ const Footer = () => {
                   href="#"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  Roadmap
+                  {t.roadmap}
                 </Link>
                 <Link
                   href="mailto:contact@cryptofly.com?subject=CryptoFly Contact - Flight Booking Inquiry&body=Hello CryptoFly Team,%0D%0A%0D%0AI am interested in:%0D%0A- Flight booking%0D%0A- Crypto payment options%0D%0A- Other: %0D%0A%0D%0APlease contact me.%0D%0A%0D%0AThank you!"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  Contact us
+                  {t.contactUs}
                 </Link>
                 <Link
                   href="#"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  Crypto guides
+                  {t.cryptoGuides}
                 </Link>
                 <Link
                   href="#"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  FAQ
+                  {t.faq}
                 </Link>
               </div>
             </div>
 
             {/* Legal */}
             <div>
-              <h3 className="font-bold text-gray-800 mb-4">Legal</h3>
+              <h3 className="font-bold text-gray-800 mb-4">{t.legal}</h3>
               <div className="space-y-2">
                 <Link
                   href="/tos"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  Terms of Service
+                  {t.termsOfService}
                 </Link>
                 <Link
                   href="#"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  Legal notices
+                  {t.legalNotices}
                 </Link>
                 <Link
                   href="/privacy-policy"
                   className="block text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  Privacy Policy
+                  {t.privacyPolicy}
                 </Link>
                 <button
                   onClick={handleCookieClick}
                   className="block text-left text-gray-600 hover:text-blue-600 transition-colors"
                 >
-                  Cookie Settings
+                  {t.cookieSettings}
                 </button>
               </div>
             </div>
@@ -147,20 +149,19 @@ const Footer = () => {
             {/* Newsletter */}
             <div>
               <h3 className="font-bold text-gray-800 mb-4">
-                Crypto Newsletter
+                {t.cryptoNewsletter}
               </h3>
               <p className="text-gray-600 text-sm mb-4">
-                Receive CryptoFly deals once a month (or more if we find
-                interesting flights)
+                {t.newsletterDescription}
               </p>
               <div className="flex">
                 <input
                   type="email"
-                  placeholder="your@email.com"
+                  placeholder={t.emailPlaceholder}
                   className="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <button className="bg-blue-600 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700 transition-colors">
-                  Subscribe
+                  {t.subscribe}
                 </button>
               </div>
             </div>
@@ -168,26 +169,25 @@ const Footer = () => {
 
           {/* Latest News */}
           <div className="mb-12">
-            <h3 className="font-bold text-gray-800 mb-6">Our latest news</h3>
+            <h3 className="font-bold text-gray-800 mb-6">{t.latestNews}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <Link
                 href="#"
                 className="text-sm text-gray-600 hover:text-blue-600 transition-colors"
               >
-                Bitcoin hits a new record high: impact on flight bookings
+                {t.bitcoinRecord}
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-600 hover:text-blue-600 transition-colors"
               >
-                Airlines are widely adopting crypto payments
+                {t.airlinesCrypto}
               </Link>
               <Link
                 href="#"
                 className="text-sm text-gray-600 hover:text-blue-600 transition-colors"
               >
-                Traveling without a visa with blockchain: 40 countries are
-                getting on board
+                {t.blockchainTravel}
               </Link>
             </div>
           </div>

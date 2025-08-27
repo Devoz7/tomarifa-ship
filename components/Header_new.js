@@ -7,41 +7,18 @@ import Link from "next/link";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import LoginSuccessModal from "./LoginSuccessModal";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { translations } from "@/hooks/useTranslation";
 import config from "@/config";
 
 const Header = () => {
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
-  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const { data: session } = useSession();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const { language, toggleLanguage } = useLanguage();
-  const t = translations[language];
 
   // setIsOpen(false) when the route changes
   useEffect(() => {
     setIsOpen(false);
-    setIsLanguageOpen(false);
   }, [searchParams]);
-
-  // Fermer le menu de langue quand on clique à l'extérieur
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.target.closest(".language-selector")) {
-        setIsLanguageOpen(false);
-      }
-    };
-
-    if (isLanguageOpen) {
-      document.addEventListener("click", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [isLanguageOpen]);
 
   // Afficher la modal de succès UNIQUEMENT lors d'une nouvelle connexion Google
   useEffect(() => {
@@ -70,7 +47,7 @@ const Header = () => {
     } catch (error) {
       console.error("Erreur lors de la connexion Google:", error);
       sessionStorage.removeItem("justLoggedIn");
-      toast.error(t.loginError, {
+      toast.error("Erreur lors de la connexion", {
         duration: 4000,
         style: {
           background: "#ef4444",
@@ -91,7 +68,7 @@ const Header = () => {
             className="flex items-center gap-2 shrink-0"
             title={`${config.appName} homepage`}
           >
-            <div className="w-8 h-8 bg-gradient-to-r from-violet-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+            <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
               <svg
                 width="18"
                 height="18"
@@ -122,32 +99,15 @@ const Header = () => {
               href="/gift-cards"
               className="text-white/90 hover:text-white transition-colors font-medium text-sm"
             >
-              {t.giftCards}
+              Gift cards
             </Link>
             <Link
-              href="/trips"
+              href="/my-trips"
               className="text-white/90 hover:text-white transition-colors font-medium text-sm"
             >
-              {t.myTrips}
+              My trips
             </Link>
           </div>
-
-          {/* Indicateur de connexion */}
-          {session?.user && (
-            <div className="hidden md:flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-white text-sm font-medium">
-                {t.hello} {session.user.name?.split(" ")[0] || "Voyageur"}
-              </span>
-              <svg
-                className="w-4 h-4 text-violet-300"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M3 12L22 2L13 21L11 13L3 12Z" />
-              </svg>
-            </div>
-          )}
 
           {/* Menu hamburger */}
           <button
@@ -155,7 +115,7 @@ const Header = () => {
             className="p-2 text-white hover:bg-white/10 rounded-md transition-colors"
             onClick={() => setIsOpen(true)}
           >
-            <span className="sr-only">{t.openMenu}</span>
+            <span className="sr-only">Ouvrir le menu</span>
             <svg
               width="24"
               height="24"
@@ -173,7 +133,7 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Menu modal overlay avec design professionnel - Style Ulysse */}
+        {/* Menu modal overlay avec design professionnel */}
         {isOpen && (
           <div
             className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
@@ -183,11 +143,12 @@ const Header = () => {
               className="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl transform transition-transform duration-300 ease-out"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Contenu du menu - Style Ulysse */}
               <div className="h-full flex flex-col bg-white">
                 {/* Header du menu avec connexion/profil */}
                 <div className="bg-gradient-to-r from-violet-600 to-purple-600 p-6 text-white">
                   <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-xl font-bold">{t.helloTraveler}</h2>
+                    <h2 className="text-xl font-bold">Hello, traveler.</h2>
                     <button
                       onClick={() => setIsOpen(false)}
                       className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all duration-200"
@@ -209,6 +170,7 @@ const Header = () => {
                   </div>
 
                   {session ? (
+                    /* Utilisateur connecté */
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
                         <Image
@@ -229,6 +191,7 @@ const Header = () => {
                       </div>
                     </div>
                   ) : (
+                    /* Boutons de connexion */
                     <div className="space-y-3">
                       <button
                         onClick={handleGoogleSignIn}
@@ -252,13 +215,13 @@ const Header = () => {
                             d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                           />
                         </svg>
-                        {t.continueWithGoogle}
+                        Continue with Google
                       </button>
                       <div className="text-center">
-                        <span className="text-white/80 text-sm">{t.or}</span>
+                        <span className="text-white/80 text-sm">or</span>
                       </div>
                       <button className="w-full bg-transparent border border-white/30 text-white rounded-xl py-3 px-4 font-medium hover:bg-white/10 transition-colors">
-                        {t.login}
+                        Log in
                       </button>
                     </div>
                   )}
@@ -266,10 +229,10 @@ const Header = () => {
                   {!session && (
                     <div className="mt-4 text-center">
                       <span className="text-white/80 text-sm">
-                        {t.noAccountYet}{" "}
+                        No account yet?{" "}
                       </span>
                       <button className="text-white font-medium underline hover:no-underline">
-                        {t.createAccount}
+                        Create an account
                       </button>
                     </div>
                   )}
@@ -278,14 +241,10 @@ const Header = () => {
                 {/* Section Voyages */}
                 <div className="p-6 border-b border-gray-100">
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                    {t.trips}
+                    Voyages
                   </h3>
                   <div className="space-y-3">
-                    <Link
-                      href="/"
-                      className="w-full bg-gray-50 hover:bg-gray-100 rounded-xl p-4 flex items-center gap-4 transition-colors group"
-                      onClick={() => setIsOpen(false)}
-                    >
+                    <button className="w-full bg-gray-50 hover:bg-gray-100 rounded-xl p-4 flex items-center gap-4 transition-colors group">
                       <div className="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center group-hover:bg-violet-200 transition-colors">
                         <svg
                           className="w-6 h-6 text-violet-600"
@@ -303,10 +262,10 @@ const Header = () => {
                       </div>
                       <div className="flex-1 text-left">
                         <div className="font-medium text-gray-800">
-                          {t.bookFlight}
+                          Réserver un vol
                         </div>
                         <div className="text-sm text-gray-500">
-                          {t.bookFlightDesc}
+                          Trouvez les meilleurs prix
                         </div>
                       </div>
                       <svg
@@ -322,13 +281,9 @@ const Header = () => {
                           d="M9 5l7 7-7 7"
                         />
                       </svg>
-                    </Link>
+                    </button>
 
-                    <Link
-                      href="/trips"
-                      className="w-full bg-gray-50 hover:bg-gray-100 rounded-xl p-4 flex items-center gap-4 transition-colors group"
-                      onClick={() => setIsOpen(false)}
-                    >
+                    <button className="w-full bg-gray-50 hover:bg-gray-100 rounded-xl p-4 flex items-center gap-4 transition-colors group">
                       <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
                         <svg
                           className="w-6 h-6 text-blue-600"
@@ -346,10 +301,10 @@ const Header = () => {
                       </div>
                       <div className="flex-1 text-left">
                         <div className="font-medium text-gray-800">
-                          {t.myTripsMenu}
+                          Mes voyages
                         </div>
                         <div className="text-sm text-gray-500">
-                          {t.myTripsDesc}
+                          Gérez vos réservations
                         </div>
                       </div>
                       <svg
@@ -365,14 +320,14 @@ const Header = () => {
                           d="M9 5l7 7-7 7"
                         />
                       </svg>
-                    </Link>
+                    </button>
                   </div>
                 </div>
 
                 {/* Section Nos services */}
                 <div className="p-6 flex-1">
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                    {t.services}
+                    Nos services
                   </h3>
                   <div className="grid grid-cols-2 gap-3">
                     <button className="bg-gray-50 hover:bg-gray-100 rounded-xl p-4 flex flex-col items-center gap-2 transition-colors group">
@@ -386,7 +341,7 @@ const Header = () => {
                         </svg>
                       </div>
                       <span className="text-sm font-medium text-gray-800">
-                        {t.cryptoNews}
+                        Crypto News
                       </span>
                     </button>
 
@@ -407,7 +362,7 @@ const Header = () => {
                         </svg>
                       </div>
                       <span className="text-sm font-medium text-gray-800">
-                        {t.wallet}
+                        Portefeuille
                       </span>
                     </button>
 
@@ -428,7 +383,7 @@ const Header = () => {
                         </svg>
                       </div>
                       <span className="text-sm font-medium text-gray-800">
-                        {t.referral}
+                        Parrainage
                       </span>
                     </button>
 
@@ -449,7 +404,7 @@ const Header = () => {
                         </svg>
                       </div>
                       <span className="text-sm font-medium text-gray-800">
-                        {t.help}
+                        Aide
                       </span>
                     </button>
                   </div>
@@ -458,62 +413,23 @@ const Header = () => {
                 {/* Sélecteur de langue en bas */}
                 <div className="p-6 border-t border-gray-100">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">{t.language}</span>
-                    <div className="relative language-selector">
-                      <button
-                        onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                        className="flex items-center gap-2 text-sm font-medium text-gray-800 hover:text-violet-600 transition-colors"
+                    <span className="text-sm text-gray-600">Langue</span>
+                    <button className="flex items-center gap-2 text-sm font-medium text-gray-800 hover:text-violet-600 transition-colors">
+                      Français
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
                       >
-                        {language === "fr" ? t.french : t.english}
-                        <svg
-                          className={`w-4 h-4 transition-transform ${
-                            isLanguageOpen ? "rotate-180" : ""
-                          }`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      </button>
-
-                      {/* Menu déroulant */}
-                      {isLanguageOpen && (
-                        <div className="absolute bottom-full right-0 mb-2 w-32 bg-white border border-gray-200 rounded-lg shadow-lg py-1 z-50">
-                          <button
-                            onClick={() => {
-                              if (language !== "fr") toggleLanguage();
-                              setIsLanguageOpen(false);
-                            }}
-                            className={`w-full px-3 py-2 text-left text-sm hover:bg-gray-50 transition-colors ${
-                              language === "fr"
-                                ? "bg-violet-50 text-violet-600 font-medium"
-                                : "text-gray-700"
-                            }`}
-                          >
-                            🇫🇷 Français
-                          </button>
-                          <button
-                            onClick={() => {
-                              if (language !== "en") toggleLanguage();
-                              setIsLanguageOpen(false);
-                            }}
-                            className={`w-full px-3 py-2 text-left text-sm hover:bg-gray-50 transition-colors ${
-                              language === "en"
-                                ? "bg-violet-50 text-violet-600 font-medium"
-                                : "text-gray-700"
-                            }`}
-                          >
-                            🇬🇧 English
-                          </button>
-                        </div>
-                      )}
-                    </div>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
 
@@ -522,7 +438,7 @@ const Header = () => {
                   <div className="p-6 border-t border-gray-100">
                     <button
                       onClick={() => {
-                        toast.success(t.logoutSuccess, {
+                        toast.success("Déconnexion réussie ! À bientôt ✈️", {
                           duration: 3000,
                           style: {
                             background:
@@ -535,7 +451,7 @@ const Header = () => {
                       }}
                       className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl py-3 font-medium transition-colors"
                     >
-                      {t.logout}
+                      Se déconnecter
                     </button>
                   </div>
                 )}
