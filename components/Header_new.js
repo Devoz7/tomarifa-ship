@@ -387,7 +387,11 @@ const Header = () => {
                       </span>
                     </button>
 
-                    <button className="bg-gray-50 hover:bg-gray-100 rounded-xl p-4 flex flex-col items-center gap-2 transition-colors group">
+                    <Link
+                      href="/help"
+                      className="bg-gray-50 hover:bg-gray-100 rounded-xl p-4 flex flex-col items-center gap-2 transition-colors group"
+                      onClick={() => setIsOpen(false)}
+                    >
                       <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center group-hover:bg-red-200 transition-colors">
                         <svg
                           className="w-5 h-5 text-red-600"
@@ -406,7 +410,7 @@ const Header = () => {
                       <span className="text-sm font-medium text-gray-800">
                         Aide
                       </span>
-                    </button>
+                    </Link>
                   </div>
                 </div>
 

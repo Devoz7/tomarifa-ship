@@ -18,6 +18,31 @@ function Hero() {
   const { language } = useLanguage();
   const t = translations[language];
 
+  // Fonction de recherche
+  const handleSearch = () => {
+    // Validation des champs requis
+    if (!departureAirport || !destinationAirport || !departureDate) {
+      alert("Veuillez remplir tous les champs obligatoires");
+      return;
+    }
+
+    // Construction des paramètres pour la recherche
+    const searchParams = new URLSearchParams({
+      from: departureAirport,
+      to: destinationAirport,
+      departDate: departureDate,
+      adults: 1,
+    });
+
+    // Ajouter la date de retour si aller-retour
+    if (tripType === "round-trip" && returnDate) {
+      searchParams.append("returnDate", returnDate);
+    }
+
+    // Redirection vers la page de résultats
+    window.location.href = `/flights?${searchParams.toString()}`;
+  };
+
   // Fonction pour gérer la sélection de crypto
   const handleCryptoSelect = (crypto) => {
     setSelectedCrypto(crypto);
@@ -188,7 +213,10 @@ function Hero() {
                 </div>
 
                 <div>
-                  <button className="w-full bg-violet-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-violet-700 transition-all duration-300 shadow-md hover:shadow-lg h-12 text-sm">
+                  <button
+                    onClick={handleSearch}
+                    className="w-full bg-violet-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-violet-700 transition-all duration-300 shadow-md hover:shadow-lg h-12 text-sm"
+                  >
                     {t.search}
                   </button>
                 </div>

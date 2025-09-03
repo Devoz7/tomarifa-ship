@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test API Flights</title>
+  </head>
+  <body>
+    <h1>Test API de recherche de vols</h1>
+    <button onclick="testFlights()">Tester la recherche</button>
+    <div id="results"></div>
+
+    <script>
+      async function testFlights() {
+        try {
+          const response = await fetch("/api/flights/search", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              from: "MXP",
+              to: "DXB",
+              departureDate: "2025-09-22",
+              returnDate: "2025-09-30",
+              passengers: 1,
+            }),
+          });
+
+          const data = await response.json();
+
+          document.getElementById("results").innerHTML =
+            "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+
+          console.log("Résultats:", data);
+        } catch (error) {
+          console.error("Erreur:", error);
+          document.getElementById("results").innerHTML =
+            '<p style="color: red;">Erreur: ' + error.message + "</p>";
+        }
+      }
+    </script>
+  </body>
+</html>
